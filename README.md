@@ -5,6 +5,16 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+export async function generateMetadata({params, searchParams}){
+  const product = await getProduct(params.id);
+  
+  return{
+    title: product.title
+  }
+}
+```
+
+```bash
 npm run dev
 # or
 yarn dev
