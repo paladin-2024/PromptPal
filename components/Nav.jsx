@@ -7,7 +7,10 @@ import { signIn, signOut, getProviders
 
 const Nav = () => {
     const isUserLoggedIn = true;
+    
     const [providers, setProviders]= useState(null);
+    const [toggleDropDown, setToggleDropDown] = useState()
+    
     useEffect(() => {
         const setProviders = async ()=>{
             const response = await getProviders();
