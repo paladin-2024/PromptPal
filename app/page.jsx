@@ -4,8 +4,11 @@ const Home = () => {
             <h1 className='head_text text-center'>
                 Discover & share
                 <br className='max-md:hidden' />
-                <span className='font-bold text-2xl md:text-3xl md:text-4xl'>AI-Powered Prompts</span>
+                <span className='orange_gradient text-center'>AI-Powered Prompts</span>
             </h1>
+            <p>
+                PromptPal is an open-source AI prompting tool for modern world to discover, create and share creative prompts
+            </p>
         </section>
     )
 }
