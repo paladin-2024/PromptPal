@@ -26,6 +26,7 @@ const Nav = () => {
                 <p className='logo_text'>PromptPal</p>
             </Link>
 
+
             <div className='sm:flex hidden'>
                 {session?.user ? (
                     <di className='flex gap-3 md:gap-5'>
