@@ -13,11 +13,11 @@ const Nav = () => {
     const [toggleDropDown, setToggleDropDown] = useState()
     
     useEffect(() => {
-        const setProviders = async ()=>{
+        const setUpProviders = async ()=>{
             const response = await getProviders();
             setProviders(response);
         }
-        setProviders();
+        setUpProviders();
     }, []);
     return (
         <nav className='flex-between w-full mb-16 pt-3'>
@@ -51,7 +51,7 @@ const Nav = () => {
                             <button type="button" key={provider.name}
                                     onClick={()=> signIn(provider.id)}
                                     className='black_btn'>
-
+                                Sign In
                             </button>
                         ))}
                     </>
