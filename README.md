@@ -22,7 +22,6 @@
 - **TailwindCSS**
 
 ---
-
 ## 🔋 Features
 
 - 🌟 **Glassmorphism Design** — A sleek, modern UI built with visual polish
