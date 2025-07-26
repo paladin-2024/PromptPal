@@ -36,6 +36,24 @@
 
 ---
 
+## 🖼️ Screenshots
+
+Here’s a quick look at **PromptPal** in action:
+
+### 🌐 Home Page
+![Landing Page](./public/assets/screens/home.png)
+
+### 👤 User Profile
+![User Profile](./public/assets/screens/profile.png)
+
+
+### 🔍 Post Creation
+![Prompt Feed](./public/assets/screens/create.png)
+
+
+> 📸 To add your own screenshots, save them in a folder like `assets/screenshots/` and update the paths accordingly.
+
+
 ## 🤸 Quick Start
 
 ### 📦 Prerequisites
