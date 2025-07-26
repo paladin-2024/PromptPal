@@ -4,9 +4,13 @@ import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => (
-    <div className='mt-16 prompt_layout'>
+    <div className="mt-16 prompt_layout">
         {data.map((post) => (
-            <PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />
+            <PromptCard
+                key={post._id}
+                post={post}
+                handleTagClick={handleTagClick}
+            />
         ))}
     </div>
 );
@@ -14,7 +18,7 @@ const PromptCardList = ({ data, handleTagClick }) => (
 const Feed = () => {
     const [allPosts, setAllPosts] = useState([]);
     const [searchText, setSearchText] = useState("");
-    const [searchTimeout, setSearchTimeout] = useState(null);
+    const [searchTimeoutId, setSearchTimeoutId] = useState(null);
     const [searchedResults, setSearchedResults] = useState([]);
 
     useEffect(() => {
@@ -42,38 +46,41 @@ const Feed = () => {
     };
 
     const handleSearchChange = (e) => {
-        clearTimeout(searchTimeout);
-        const text = e.target.value;
-        setSearchText(text);
+        const value = e.target.value;
+        setSearchText(value);
 
-        setSearchTimeout(
-            setTimeout(() => {
-                setSearchedResults(filterPrompts(text));
-            }, 500)
-        );
+        if (searchTimeoutId) clearTimeout(searchTimeoutId);
+
+        const timeoutId = setTimeout(() => {
+            const filtered = filterPrompts(value);
+            setSearchedResults(filtered);
+        }, 500);
+
+        setSearchTimeoutId(timeoutId);
     };
 
-    const handleTagClick = (tagName) => {
-        setSearchText(tagName);
-        setSearchedResults(filterPrompts(tagName));
+    const handleTagClick = (tag) => {
+        setSearchText(tag);
+        const filtered = filterPrompts(tag);
+        setSearchedResults(filtered);
     };
 
-    const displayData = searchText ? searchedResults : allPosts;
+    const dataToDisplay = searchText ? searchedResults : allPosts;
 
     return (
-        <section className='feed'>
-            <form className='relative w-full flex-center'>
+        <section className="feed">
+            <form className="relative w-full flex-center">
                 <input
-                    type='text'
-                    placeholder='Search for a tag or a username'
+                    type="text"
+                    placeholder="Search for a tag or a username"
                     value={searchText}
                     onChange={handleSearchChange}
                     required
-                    className='search_input peer'
+                    className="search_input peer"
                 />
             </form>
 
-            <PromptCardList data={displayData} handleTagClick={handleTagClick} />
+            <PromptCardList data={dataToDisplay} handleTagClick={handleTagClick} />
         </section>
     );
 };
