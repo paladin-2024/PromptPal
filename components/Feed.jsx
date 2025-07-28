@@ -16,54 +16,29 @@ const PromptCardList = ({ data, handleTagClick }) => (
 );
 
 const Feed = () => {
-    const [allPosts, setAllPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [searchText, setSearchText] = useState("");
-    const [searchTimeoutId, setSearchTimeoutId] = useState(null);
-    const [searchedResults, setSearchedResults] = useState([]);
+    //const [searchTimeoutId, setSearchTimeoutId] = useState(null);
+    //const [searchedResults, setSearchedResults] = useState([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
-            try {
                 const response = await fetch("/api/prompt");
                 const data = await response.json();
-                setAllPosts(data);
-            } catch (error) {
-                console.error("Failed to fetch prompts:", error);
-            }
+                setPosts(data);
+
         };
 
         fetchPosts();
     }, []);
 
-    const filterPrompts = (text) => {
-        const regex = new RegExp(text, "i");
-        return allPosts.filter(
-            (item) =>
-                regex.test(item.creator.username) ||
-                regex.test(item.tag) ||
-                regex.test(item.prompt)
-        );
-    };
+
 
     const handleSearchChange = (e) => {
-        const value = e.target.value;
-        setSearchText(value);
 
-        if (searchTimeoutId) clearTimeout(searchTimeoutId);
-
-        const timeoutId = setTimeout(() => {
-            const filtered = filterPrompts(value);
-            setSearchedResults(filtered);
-        }, 500);
-
-        setSearchTimeoutId(timeoutId);
     };
 
-    const handleTagClick = (tag) => {
-        setSearchText(tag);
-        const filtered = filterPrompts(tag);
-        setSearchedResults(filtered);
-    };
+
 
     return (
         <section className="feed">
@@ -77,10 +52,9 @@ const Feed = () => {
                     className="search_input peer"
                 />
             </form>
-
             <PromptCardList
-                data={searchText ? searchedResults : allPosts}
-                handleTagClick={handleTagClick}
+                data={posts}
+                handleTagClick={()=>{}}
             />
         </section>
     );
