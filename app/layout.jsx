@@ -11,7 +11,8 @@ export const metadata = {
 const RootLayout = ({ children }) => (
     <html lang='en'>
     <head>
-        <link rel="icon" href="/public/assets/images/logo.svg" />
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/public/assets/images/logo.svg" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
     </head>
